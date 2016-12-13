@@ -16,6 +16,8 @@ class RideController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //Retorna los rides del usuario logueado
     public function index()
     {
         $rides= Ride::where('idUser',Auth::id())->get();
@@ -30,7 +32,7 @@ class RideController extends Controller
      */
     public function create()
     {
-        return view('rides.create');
+        return view('rides.create');//retorna la vista create
     }
 
     /**
@@ -41,6 +43,7 @@ class RideController extends Controller
      */
     public function store(Request $request)
     {
+        //Validaciones
           $rules =array
         (
             'name_ride'                 => 'required',  
@@ -125,6 +128,7 @@ class RideController extends Controller
      */
     public function destroy($id)
     {
+        //Busca el objeto en la db y lo elimina
         $ride=Ride::find($id);
         $ride->delete();       
         $message = 'Ride eliminado correctamente!';        
